@@ -3,6 +3,18 @@
 const container = document.getElementById("container");
 
 
+//array vuoto
+let bombArr = [];
+// Finché l'array non ha 16 elementi, genera numeri casuali unici tra 1 e 100 e li aggiunge all'array
+while (bombArr.length < 16) {
+let randomNum = Math.floor(Math.random() * 100) + 1;
+// Se il numero non è già presente nell'array, lo aggiunge
+if (!bombArr.includes(randomNum)) {
+    bombArr.push(randomNum);
+}
+}
+console.log(bombArr);
+
 // creare constante per selezionare l'id del button
 const buttonGenera = document.getElementById("genera");
 
@@ -27,14 +39,26 @@ function myFunction() {
         createSpan.append(i);
 
 
+
         // nuovo evento al click, ma questa volta solo sul quadrato creato, in modo da aggiungergli la classe che farà cambiare colore al click
         nuovoQuadrato.addEventListener("click", 
         function() {
 
-            nuovoQuadrato.classList.add('blue');
-            console.log("Il quadrato selezionato è il numero:" + i);
+            if(createSpan[i] === bombArr.length) {
+                nuovoQuadrato.classList.add('red');
+                console.log("hai perso");
+            } else {
+                nuovoQuadrato.classList.add('blue');
+                console.log("Il quadrato selezionato è il numero:" + i);
+            }
+         
         })
        
+
+
+       
+
+
         // inserito dentro al div che contiene classe square (quindi la funzione) il nuovo elemento crerato (span)
         nuovoQuadrato.append(createSpan);
     
@@ -68,6 +92,7 @@ function createContainerSquare(prendiElement, prendiClass){
 
 
 
+
  
 
 
@@ -76,6 +101,8 @@ function createContainerSquare(prendiElement, prendiClass){
 
 Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
         /il computer deve generare 16 numeri compresi da 1 a 100
+
+        
 
 
 Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
