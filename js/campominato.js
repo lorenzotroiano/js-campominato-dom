@@ -1,4 +1,4 @@
-
+ let score = 0;
 // variabile per selezionare nel dom il div che ha l'id "container"
 const container = document.getElementById("container");
 
@@ -19,7 +19,7 @@ function myFunction() {
     console.log(bombe);
   
 
-    let punteggio = 0;
+    
 
 
     for (let i = 1; i <= 100; i++) {
@@ -35,22 +35,28 @@ function myFunction() {
         // aggiunto al nuovo elemento creato la variabile i (che genererà i numero da 1 a 100 all'interno dello span)
         createSpan.append(i);
 
-
+        
         // nuovo evento al click, ma questa volta solo sul quadrato creato, in modo da aggiungergli la classe che farà cambiare colore al click
         nuovoQuadrato.addEventListener("click", 
         function() {
 
+
+        
+           
+           
+
             if (bombe.includes(i)) {
                 nuovoQuadrato.classList.add('red');
-               console.log("Hai persoooo");
+               console.log("Hai persoooo, hai totalizzato punti:" + " " + score);
 
-               
+               container.innerHTML = "Hai perso!! Hai totalizzato:" + " " + score;
                
             }else {
+                score++;
+                console.log(score);
+               
                 nuovoQuadrato.classList.add('blue');
-                console.log("Il quadrato selezionato è il numero:" + i);
-
-                
+                console.log("Il quadrato selezionato è il numero:" + i + "Hai totalizzato punti:" + " " + score);   
             }
            
         })
