@@ -3,18 +3,6 @@
 const container = document.getElementById("container");
 
 
-//array vuoto
-let bombArr = [];
-// Finché l'array non ha 16 elementi, genera numeri casuali unici tra 1 e 100 e li aggiunge all'array
-while (bombArr.length < 16) {
-let randomNum = Math.floor(Math.random() * 100) + 1;
-// Se il numero non è già presente nell'array, lo aggiunge
-if (!bombArr.includes(randomNum)) {
-    bombArr.push(randomNum);
-}
-}
-console.log(bombArr);
-
 // creare constante per selezionare l'id del button
 const buttonGenera = document.getElementById("genera");
 
@@ -25,6 +13,15 @@ function myFunction() {
 
     container.innerHTML = "";
    
+
+    const bombe = createNumRandomOrd(16, 1, 100);
+
+    console.log(bombe);
+  
+
+    let punteggio = 0;
+
+
     for (let i = 1; i <= 100; i++) {
 
         // creata una constante con dentro la funzione e i valori che devo creare "div" e aggiungere come classe "square"
@@ -39,21 +36,26 @@ function myFunction() {
         createSpan.append(i);
 
 
-
         // nuovo evento al click, ma questa volta solo sul quadrato creato, in modo da aggiungergli la classe che farà cambiare colore al click
         nuovoQuadrato.addEventListener("click", 
         function() {
 
-            if(createSpan[i] === bombArr.length) {
+            if (bombe.includes(i)) {
                 nuovoQuadrato.classList.add('red');
-                console.log("hai perso");
-            } else {
+               console.log("Hai persoooo");
+
+               
+               
+            }else {
                 nuovoQuadrato.classList.add('blue');
                 console.log("Il quadrato selezionato è il numero:" + i);
+
+                
             }
-         
+           
         })
        
+
 
 
        
@@ -88,14 +90,41 @@ function createContainerSquare(prendiElement, prendiClass){
 }
 
 
+function createRandomNum(numMin, numMax) {
+    return Math.floor(Math.random() * (numMax - numMin + 1) ) + numMin;
+  }
+
+
+
+
+
+
+function createNumRandomOrd(numMax, min, max){
+
+    let numArray = [];
+
+    while (numArray.length < numMax) {
+        const nuovoNumRand = createRandomNum(min, max);
+       
+        if (!numArray.includes(nuovoNumRand)) {
+
+            numArray.push(nuovoNumRand);
+        }
+
+    }
+   
+    return numArray;
+}
+
+
+//  console.log(createNumRandomOrd(16, 1, 100));
+
 
 
 
 
 
  
-
-
  
 /*
 
