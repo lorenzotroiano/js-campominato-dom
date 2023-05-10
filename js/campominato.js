@@ -13,7 +13,7 @@ function myFunction() {
 
     container.innerHTML = "";
    
-
+    // richiamo la funzione
     const bombe = createNumRandomOrd(16, 1, 100);
 
     console.log(bombe);
@@ -96,6 +96,8 @@ function createContainerSquare(prendiElement, prendiClass){
 }
 
 
+
+// funzione x creare numeri random
 function createRandomNum(numMin, numMax) {
     return Math.floor(Math.random() * (numMax - numMin + 1) ) + numMin;
   }
@@ -105,6 +107,7 @@ function createRandomNum(numMin, numMax) {
 
 
 
+//   funzione per creare le bombe in base al numero totale dei quadrati presenti nel gioco
 function createNumRandomOrd(numMax, min, max){
 
     let numArray = [];
